@@ -1,4 +1,4 @@
-package com.tsctech.springdata.demo.data;
+package org.springframework.data.demo.data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

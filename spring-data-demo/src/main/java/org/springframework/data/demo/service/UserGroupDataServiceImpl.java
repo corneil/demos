@@ -1,22 +1,19 @@
-package com.tsctech.springdata.demo.service;
-
-import static com.tsctech.springdata.demo.data.QGroupMember.groupMember;
-import static com.tsctech.springdata.demo.data.QUserInfo.userInfo;
+package org.springframework.data.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.data.demo.data.QGroupMember.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.demo.data.GroupInfo;
+import org.springframework.data.demo.data.GroupMember;
+import org.springframework.data.demo.data.UserInfo;
+import org.springframework.data.demo.repository.GroupMemberRepository;
+import org.springframework.data.demo.repository.GroupRepository;
+import org.springframework.data.demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.tsctech.springdata.demo.data.GroupInfo;
-import com.tsctech.springdata.demo.data.GroupMember;
-import com.tsctech.springdata.demo.data.QUserInfo;
-import com.tsctech.springdata.demo.data.UserInfo;
-import com.tsctech.springdata.demo.repository.GroupMemberRepository;
-import com.tsctech.springdata.demo.repository.GroupRepository;
-import com.tsctech.springdata.demo.repository.UserRepository;
 
 @Transactional
 @Service

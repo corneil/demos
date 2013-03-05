@@ -1,11 +1,10 @@
-package com.tsctech.springdata.demo.data;
+package org.springframework.data.demo.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -15,16 +14,18 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.data.demo.data.GroupInfo;
+import org.springframework.data.demo.data.GroupMember;
+import org.springframework.data.demo.data.UserInfo;
+import org.springframework.data.demo.service.UserGroupDataService;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import com.tsctech.springdata.demo.service.UserGroupDataService;
 
 @Configurable
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:integration-test.xml" })
-public class UserInfoIntegrationTest {
-	public UserInfoIntegrationTest() throws ParseException {
+public class UserGroupDataServiceIntegrationTest {
+	public UserGroupDataServiceIntegrationTest() throws ParseException {
 		super();
 		dob = makeDate("1965-10-10");
 	}
@@ -42,6 +43,7 @@ public class UserInfoIntegrationTest {
 	public void deleteData() {
 		dataService.deleteAllData();
 	}
+
 	@Test
 	public void testCreateUsersAndGroups() throws ParseException {
 		assertNotNull(dataService);
@@ -51,14 +53,14 @@ public class UserInfoIntegrationTest {
 			user.setEmailAddress("corneil.duplessis@gmail.com");
 			user.setDateOfBirth(dob);
 			dataService.saveUserInfo(user);
-			// Assertions 			
-			assertNotNull(user.getId());			
+			// Assertions
+			assertNotNull(user.getId());
 			UserInfo corneil = dataService.findUser("corneil");
 			assertNotNull(corneil);
 			assertEquals("corneil", corneil.getUserId());
 			assertEquals("Corneil du Plessis", corneil.getFullName());
 			assertEquals(dob, corneil.getDateOfBirth());
-		}		
+		}
 		if (dataService.findUser("joe") == null) {
 			UserInfo user = new UserInfo("joe", "Joe Soap");
 			user.setDateOfBirth(makeDate("1981-03-04"));
@@ -73,7 +75,7 @@ public class UserInfoIntegrationTest {
 		}
 		if (dataService.findGroup("groupTwo") == null) {
 			UserInfo corneil = dataService.findUser("corneil");
-			assertNotNull(corneil);			
+			assertNotNull(corneil);
 			GroupInfo group = new GroupInfo("groupTwo", corneil);
 			dataService.saveGroupInfo(group);
 		}
@@ -83,14 +85,11 @@ public class UserInfoIntegrationTest {
 		// Assertions
 		assertNotNull(groupOne);
 		assertNotNull(groupTwo);
-		
 		UserInfo corneil = dataService.findUser("corneil");
 		UserInfo joe = dataService.findUser("joe");
-		
 		dataService.saveGroupMember(new GroupMember(groupOne, corneil, true));
 		dataService.saveGroupMember(new GroupMember(groupOne, joe, true));
 		dataService.saveGroupMember(new GroupMember(groupTwo, corneil, true));
-		
 		// Assertions
 		List<UserInfo> usersG1 = dataService.listActiveUsersInGroup("groupOne");
 		System.out.println("Group1:" + usersG1);
@@ -98,7 +97,6 @@ public class UserInfoIntegrationTest {
 		// Test descending
 		assertEquals(joe.getId(), usersG1.get(0).getId());
 		assertEquals(corneil.getId(), usersG1.get(1).getId());
-		
 		List<UserInfo> usersG2 = dataService.listActiveUsersInGroup("groupTwo");
 		System.out.println("Group2:" + usersG2);
 		assertEquals(1, usersG2.size());

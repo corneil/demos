@@ -1,10 +1,11 @@
-package com.tsctech.springdata.demo.service;
+package org.springframework.data.demo.service;
 
 import java.util.List;
 
-import com.tsctech.springdata.demo.data.GroupInfo;
-import com.tsctech.springdata.demo.data.GroupMember;
-import com.tsctech.springdata.demo.data.UserInfo;
+import org.springframework.data.demo.data.GroupInfo;
+import org.springframework.data.demo.data.GroupMember;
+import org.springframework.data.demo.data.UserInfo;
+
 
 public interface UserGroupDataService {
 	// Added for testing
