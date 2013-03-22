@@ -18,12 +18,15 @@ import org.springframework.data.demo.data.GroupInfo;
 import org.springframework.data.demo.data.GroupMember;
 import org.springframework.data.demo.data.UserInfo;
 import org.springframework.data.demo.service.UserGroupDataService;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @Configurable
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:integration-test.xml" })
+// @ActiveProfiles(profiles = "mongo")
+// @ActiveProfiles(profiles = "jpa")
 public class UserGroupDataServiceIntegrationTest {
 	public UserGroupDataServiceIntegrationTest() throws ParseException {
 		super();

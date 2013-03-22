@@ -303,10 +303,29 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.12</version>
+				<!-- Default execution is JPA -->
 				<configuration>
-					<printSummary>false</printSummary>
-					<redirectTestOutputToFile>true</redirectTestOutputToFile>
+					<systemPropertyVariables>
+						<spring.profiles.active>jpa</spring.profiles.active>
+					</systemPropertyVariables>
+					<printSummary>true</printSummary>
+					<redirectTestOutputToFile>false</redirectTestOutputToFile>
 				</configuration>
+				<executions>
+					<execution>
+						<id>test-mongo</id>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<systemPropertyVariables>
+								<spring.profiles.active>mongo</spring.profiles.active>
+							</systemPropertyVariables>
+							<printSummary>true</printSummary>
+							<redirectTestOutputToFile>false</redirectTestOutputToFile>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
