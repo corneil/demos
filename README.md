@@ -1,5 +1,7 @@
 spring-data-demo
 ================
+The project includes metadata for SpringSource Tool Suite.
+
 Before running the demo:
 
   Create The MySQL schema and MongoDB database.
