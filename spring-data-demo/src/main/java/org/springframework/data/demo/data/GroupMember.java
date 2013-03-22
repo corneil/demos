@@ -20,6 +20,7 @@ public class GroupMember {
 	@NotNull
 	private Boolean enabled;
 
+	// Using a string id for use in both MongoDB and JPA.
 	@Id
 	@GeneratedValue(generator = "system-uuid")
 	@GenericGenerator(name = "system-uuid", strategy = "uuid")
