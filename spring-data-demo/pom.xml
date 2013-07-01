@@ -25,6 +25,16 @@
 			<name>Spring Maven Milestone Repository</name>
 			<url>http://maven.springframework.org/milestone</url>
 		</repository>
+		<repository>
+			<id>sonatype-oss-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
@@ -170,11 +180,11 @@
 			<artifactId>validation-api</artifactId>
 			<version>1.0.0.GA</version>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>cglib</groupId> -->
-<!-- 			<artifactId>cglib-nodep</artifactId> -->
-<!-- 			<version>2.2.2</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>cglib</groupId> -->
+		<!-- <artifactId>cglib-nodep</artifactId> -->
+		<!-- <version>2.2.2</version> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>javax.transaction</groupId>
 			<artifactId>jta</artifactId>
@@ -296,7 +306,7 @@
 				<!-- Default execution is JPA -->
 				<configuration>
 					<systemPropertyVariables>
-						<spring.profiles.active>jpa</spring.profiles.active>
+						<spring.profiles.active>jpa-hibernate</spring.profiles.active>
 					</systemPropertyVariables>
 					<printSummary>true</printSummary>
 					<redirectTestOutputToFile>false</redirectTestOutputToFile>
@@ -396,6 +406,9 @@
 						<configuration>
 							<outputDirectory>target/generated-sources</outputDirectory>
 							<processor>com.mysema.query.apt.QuerydslAnnotationProcessor</processor>
+							<includes>
+								<include>org.springframework.data.demo.data</include>
+							</includes>
 						</configuration>
 					</execution>
 				</executions>

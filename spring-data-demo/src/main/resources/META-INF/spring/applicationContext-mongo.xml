@@ -12,7 +12,7 @@
 	<context:property-placeholder location="classpath*:META-INF/spring/database.properties" />
 	<mongo:db-factory dbname="${mongo.database}" host="${mongo.host}" id="mongoDbFactory" port="${mongo.port}" write-concern="SAFE" />
 
-	<mongo:repositories base-package="org.springframework.data.demo" />
+	<mongo:repositories base-package="org.springframework.data.demo.repository" />
 
 	<context:annotation-config />
 
