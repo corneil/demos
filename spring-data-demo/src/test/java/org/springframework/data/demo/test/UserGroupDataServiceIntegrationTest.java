@@ -18,16 +18,18 @@ import org.springframework.data.demo.data.GroupInfo;
 import org.springframework.data.demo.data.GroupMember;
 import org.springframework.data.demo.data.UserInfo;
 import org.springframework.data.demo.service.UserGroupDataService;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @Configurable
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { TestConfiguration.class })
-// @ActiveProfiles(profiles = "mongo")
-// @ActiveProfiles(profiles = "jpa-hibernate")
-// @ActiveProfiles(profiles = "jpa-orientdb")
+/*
+ * Configure profile use in test execution by adding spring.profiles.default=mongo|jpa-hibernate to environment
+ * @ActiveProfiles(profiles = "mongo")
+ * @ActiveProfiles(profiles = "jpa-hibernate")
+ * 
+ */
 public class UserGroupDataServiceIntegrationTest {
 	public UserGroupDataServiceIntegrationTest() throws ParseException {
 		super();
