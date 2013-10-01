@@ -24,11 +24,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @Configurable
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:integration-test.xml" })
+@ContextConfiguration(classes = { TestConfiguration.class })
 // @ActiveProfiles(profiles = "mongo")
 // @ActiveProfiles(profiles = "jpa-hibernate")
 // @ActiveProfiles(profiles = "jpa-orientdb")
-
 public class UserGroupDataServiceIntegrationTest {
 	public UserGroupDataServiceIntegrationTest() throws ParseException {
 		super();
