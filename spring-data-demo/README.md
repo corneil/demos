@@ -9,3 +9,5 @@ Before running the demo:
 
 Run demo by invoking mvn test
 
+The spring xml configuration files are not used anymore but they serve as an example of what an equivalent JavaConfig.
+
