@@ -5,4 +5,4 @@
 /.gradle
 /src/generated
 *.iml
-.*
+!gradle-wrapper.jar
