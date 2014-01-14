@@ -1,0 +1,25 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.springframework.di'
+version = '1.0.0-SNAPSHOT'
+
+description = 'spring-di-sample'
+
+sourceCompatibility = 6
+targetCompatibility = 6
+
+
+
+repositories {
+        
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'javax', name: 'javaee-api', version:'6.0'
+    compile group: 'commons-dbcp', name: 'commons-dbcp', version:'1.4'
+    compile group: 'org.springframework', name: 'spring-core', version:'3.2.4.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version:'3.2.4.RELEASE'
+    compile group: 'org.springframework', name: 'spring-jdbc', version:'3.2.4.RELEASE'
+    compile group: 'org.springframework', name: 'spring-jms', version:'3.2.4.RELEASE'
+}
