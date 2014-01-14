@@ -2,9 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.springframework.di</groupId>
-	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>di-sample</name>
+	<name>spring-di-sample</name>
 	<description>Dependency Injection Sample</description>
 	<dependencies>
 		<dependency>
@@ -39,7 +38,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -51,4 +49,5 @@
 			</plugin>
 		</plugins>
 	</build>
+	<artifactId>spring-di-sample</artifactId>
 </project>
