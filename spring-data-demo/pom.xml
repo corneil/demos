@@ -105,7 +105,7 @@
 		<!-- Spring dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
+			<artifactId>spring-beans</artifactId>
 			<version>${spring.version}</version>
 			<exclusions>
 				<exclusion>
@@ -306,7 +306,7 @@
 				<!-- Default execution is JPA -->
 				<configuration>
 					<systemPropertyVariables>
-						<spring.profiles.active>jpa-hibernate</spring.profiles.active>
+						<spring.profiles.active>hibernate</spring.profiles.active>
 					</systemPropertyVariables>
 					<printSummary>true</printSummary>
 					<redirectTestOutputToFile>false</redirectTestOutputToFile>

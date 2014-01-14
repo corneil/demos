@@ -21,75 +21,75 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
-@Profile("jpa-hibernate")
+@Profile("hibernate")
 @Configuration
-@EnableJpaRepositories("org.springframework.data.demo.repository")
+@EnableJpaRepositories(basePackages = { "org.springframework.data.demo.repository", "org.springframework.data.demo.data" })
 @PropertySource("classpath:META-INF/spring/database.properties")
 @EnableTransactionManagement()
 public class JpaHibernateConfig implements TransactionManagementConfigurer {
-	@Value("${database.driverClassName}")
-	protected String driverClassName;
+    @Value("${database.driverClassName}")
+    protected String driverClassName;
 
-	@Value("${database.url}")
-	protected String url;
+    @Value("${database.url}")
+    protected String url;
 
-	@Value("${database.username}")
-	protected String username;
+    @Value("${database.username}")
+    protected String username;
 
-	@Value("${database.password}")
-	protected String password;
+    @Value("${database.password}")
+    protected String password;
 
-	@Bean
-	public DataSource dataSource() {
-		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName(driverClassName);
-		dataSource.setUrl(url);
-		dataSource.setUsername(username);
-		dataSource.setPassword(password);
-		dataSource.setTestOnBorrow(true);
-		dataSource.setTestOnReturn(true);
-		dataSource.setTestWhileIdle(true);
-		dataSource.setTimeBetweenEvictionRunsMillis(1800000);
-		dataSource.setNumTestsPerEvictionRun(3);
-		dataSource.setMinEvictableIdleTimeMillis(1800000);
-		dataSource.setValidationQuery("SELECT 1");
-		return dataSource;
-	}
+    @Bean
+    public DataSource dataSource() {
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName(driverClassName);
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        dataSource.setTestOnBorrow(true);
+        dataSource.setTestOnReturn(true);
+        dataSource.setTestWhileIdle(true);
+        dataSource.setTimeBetweenEvictionRunsMillis(1800000);
+        dataSource.setNumTestsPerEvictionRun(3);
+        dataSource.setMinEvictableIdleTimeMillis(1800000);
+        dataSource.setValidationQuery("SELECT 1");
+        return dataSource;
+    }
 
-	@Bean(name = "entityManagerFactory")
-	public EntityManagerFactory entityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean lcemfb = new LocalContainerEntityManagerFactoryBean();
-		lcemfb.setDataSource(dataSource());
-		lcemfb.setJpaDialect(new HibernateJpaDialect());
-		lcemfb.setJpaVendorAdapter(jpaVendorAdapter());
-		lcemfb.setPersistenceUnitName("persistenceUnit");
-		lcemfb.setPersistenceXmlLocation("classpath:META-INF/persistence.xml");
-		lcemfb.getJpaPropertyMap().put("hibernate.ejb.naming_strategy", org.hibernate.cfg.ImprovedNamingStrategy.class.getCanonicalName());
-		lcemfb.getJpaPropertyMap().put("hibernate.dialect", org.hibernate.dialect.MySQL5InnoDBDialect.class.getCanonicalName());
-		lcemfb.getJpaPropertyMap().put("hibernate.hbm2ddl.auto", "create");
-		lcemfb.afterPropertiesSet();
-		return lcemfb.getObject();
-	}
+    @Bean(name = "entityManagerFactory")
+    public EntityManagerFactory entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean lcemfb = new LocalContainerEntityManagerFactoryBean();
+        lcemfb.setDataSource(dataSource());
+        lcemfb.setJpaDialect(new HibernateJpaDialect());
+        lcemfb.setJpaVendorAdapter(jpaVendorAdapter());
+        lcemfb.setPersistenceUnitName("persistenceUnit");
+        lcemfb.setPackagesToScan(org.springframework.data.demo.data.UserInfo.class.getPackage().getName());
+        lcemfb.getJpaPropertyMap().put("hibernate.ejb.naming_strategy", org.hibernate.cfg.ImprovedNamingStrategy.class.getCanonicalName());
+        lcemfb.getJpaPropertyMap().put("hibernate.dialect", org.hibernate.dialect.MySQL5InnoDBDialect.class.getCanonicalName());
+        lcemfb.getJpaPropertyMap().put("hibernate.hbm2ddl.auto", "create");
+        lcemfb.afterPropertiesSet();
+        return lcemfb.getObject();
+    }
 
-	@Bean(name = "transactionManager")
-	public PlatformTransactionManager annotationDrivenTransactionManager() {
-		JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
-		jpaTransactionManager.setEntityManagerFactory(entityManagerFactory());
-		return jpaTransactionManager;
-	}
+    @Bean(name = "transactionManager")
+    public PlatformTransactionManager annotationDrivenTransactionManager() {
+        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
+        jpaTransactionManager.setEntityManagerFactory(entityManagerFactory());
+        return jpaTransactionManager;
+    }
 
-	@Bean(name = "jpaVendorAdapter")
-	public JpaVendorAdapter jpaVendorAdapter() {
-		HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-		jpaVendorAdapter.setShowSql(true);
-		jpaVendorAdapter.setDatabase(Database.MYSQL);
-		jpaVendorAdapter.setDatabasePlatform(org.hibernate.dialect.MySQL5InnoDBDialect.class.getCanonicalName());
-		jpaVendorAdapter.setGenerateDdl(false);
-		return jpaVendorAdapter;
-	}
+    @Bean(name = "jpaVendorAdapter")
+    public JpaVendorAdapter jpaVendorAdapter() {
+        HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
+        jpaVendorAdapter.setShowSql(true);
+        jpaVendorAdapter.setDatabase(Database.MYSQL);
+        jpaVendorAdapter.setDatabasePlatform(org.hibernate.dialect.MySQL5InnoDBDialect.class.getCanonicalName());
+        jpaVendorAdapter.setGenerateDdl(false);
+        return jpaVendorAdapter;
+    }
 
-	@Bean
-	public HibernateExceptionTranslator hibernateExceptionTranslator() {
-		return new HibernateExceptionTranslator();
-	}
+    @Bean
+    public HibernateExceptionTranslator hibernateExceptionTranslator() {
+        return new HibernateExceptionTranslator();
+    }
 }

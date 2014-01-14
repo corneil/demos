@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 import com.mongodb.Mongo;
 
-@Profile("mongo")
+@Profile("mongodb")
 @Configuration
 @EnableMongoRepositories("org.springframework.data.demo.repository")
 @PropertySource("classpath:META-INF/spring/database.properties")

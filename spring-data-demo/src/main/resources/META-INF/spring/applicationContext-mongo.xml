@@ -7,7 +7,7 @@
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-	profile="mongo">
+	profile="mongodb">
 
 	<context:property-placeholder location="classpath*:META-INF/spring/database.properties" />
 	<mongo:db-factory dbname="${mongo.database}" host="${mongo.host}" id="mongoDbFactory" port="${mongo.port}" write-concern="SAFE" />
