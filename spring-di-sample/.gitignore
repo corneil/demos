@@ -1,0 +1,10 @@
+/target
+/build
+/.idea
+/.settings
+/.gradle
+/src/generated
+*.iml
+.*
+!.gitignore
+!gradle-wrapper.jar
